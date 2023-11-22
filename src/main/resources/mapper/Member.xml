@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member">
+	<select id="Member_idcheck" resultType="Integer" parameterType="MemberDto">
+		select count(*) from tb_member
+		where user_id=#{user_id}
+	</select>
+	 
+	 
+	   <insert id="Member_insert" parameterType="MemberDto">
+	  	
+	  	 insert into tb_member
+	  	 (
+		   	 member_id
+		   	 ,user_id
+		   	 ,password
+		   	 ,user_name
+		   	 ,phone
+		   	 ,email
+		   	 ,zipcode
+		   	 ,address1
+		   	 ,address2
+		   	 ,wdate
+	  	 )
+	  	 values
+	  	 (
+	  	  	SEQ_MEMBER.nextval
+		  	 ,#{user_id}
+		   	 ,#{password}
+		   	 ,#{user_name}
+		   	 ,#{phone}
+		   	 ,#{email}
+		   	 ,#{zipcode}
+		   	 ,#{address1}
+		   	 ,#{address2}
+		   	 ,sysdate
+	  	 )
+	  </insert>
+	  
+	  <select id="Member_logon" resultType="MemberDto" parameterType="MemberDto">
+		  select user_id, password, user_name, phone, email 
+		  from tb_member 
+		  where user_id=#{user_id}
+	  </select>
+	  
+</mapper>
+
+
+
+
+
